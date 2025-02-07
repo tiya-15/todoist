@@ -9,14 +9,14 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: #f8f9fa;
+            background: #e3f2fd;
             text-align: center;
         }
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: white;
+            background: #0d47a1;
             padding: 15px 40px;
             box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
         }
@@ -29,7 +29,7 @@
             padding: 20px;
         }
         h1 {
-            color: #333;
+            color: #0d47a1;
         }
         .tabs {
             display: flex;
@@ -38,13 +38,14 @@
             margin: 20px 0;
         }
         .tab {
-            background: #e8e8e8;
+            background: #bbdefb;
             padding: 8px 15px;
             border-radius: 5px;
             cursor: pointer;
         }
         .tab.active {
-            background: #c8f0e0;
+            background: #64b5f6;
+            color: white;
         }
         .grid {
             display: grid;
@@ -53,7 +54,7 @@
             margin-top: 20px;
         }
         .card {
-            background: white;
+            background: #f0f8ff;
             padding: 15px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -82,12 +83,9 @@
             border-radius: 10px;
             box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
         }
-        .trust-content {
-            max-width: 500px;
-        }
         .trust-content h2 {
             font-size: 28px;
-            color: #333;
+            color: #0d47a1;
             margin-bottom: 10px;
         }
         .trust-content p {
@@ -102,13 +100,13 @@
             text-align: center;
             margin-top: 60px;
             padding: 50px;
-            background: #ffffff;
+            background: white;
             box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
         }
         .productivity-section h2 {
             font-size: 26px;
-            color: #333;
+            color: #0d47a1;
         }
         .productivity-section p {
             font-size: 18px;
@@ -119,19 +117,19 @@
             display: inline-block;
             margin-top: 20px;
             padding: 12px 25px;
-            background: #007bff;
+            background: #1565c0;
             color: white;
             font-size: 16px;
             text-decoration: none;
             border-radius: 5px;
         }
         .start-button:hover {
-            background: #0056b3;
+            background: #0d47a1;
         }
         /* Footer */
         .footer {
             margin-top: 50px;
-            background: #333;
+            background: #0d47a1;
             color: white;
             padding: 15px;
             text-align: center;
@@ -213,15 +211,10 @@
             ]
         };
 
-        // Populate the grid
         templates[category].forEach(item => {
             let card = document.createElement('div');
             card.classList.add('card');
-            card.innerHTML = `
-                ${item.img ? `<img src="${item.img}" alt="icon">` : ''}
-                <h3>${item.title}</h3>
-                <p>${item.desc}</p>
-            `;
+            card.innerHTML = `<img src="${item.img}" alt="icon"><h3>${item.title}</h3><p>${item.desc}</p>`;
             grid.appendChild(card);
         });
     }
