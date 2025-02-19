@@ -1,228 +1,386 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todoist Clone</title>
+    <title>Todoist</title>
+    <link rel="icon" href="logo.png">
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: #e3f2fd;
-            text-align: center;
+            background: white;
+            color: black;
         }
+
         .navbar {
+            padding: 10px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: #0d47a1;
-            padding: 15px 40px;
             box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
         }
-        .navbar img {
-            height: 30px;
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            margin-left: 30px;
         }
+
+        .logo-container img {
+            height: 50px;
+            width: 50px;
+            margin-right: 10px;
+        }
+
+        .logo-container {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            font-size: 28px;
+            font-weight: bold;
+            color: rgb(217, 64, 44);
+        }
+
+        .brand {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            font-size: 28px;
+            font-weight: bold;
+            color: rgb(217, 64, 44);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: #070101;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 6px 12px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+
+        .nav-links a:hover {
+            background-color: rgb(218, 218, 218);
+            color: rgb(0, 0, 0);
+        }
+
+        .start-button {
+            background-color: rgb(217, 64, 44);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .start-button:hover {
+            background-color: rgb(180, 50, 35);
+        }
+
+        .hero {
+            max-width: 1200px;
+            margin: 25px auto;
+            padding: 20px;
+            text-align: left;
+        }
+
+        .hero h1 {
+            color: black;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: black;
+            margin-bottom: 20px;
+        }
+
         .container {
+            padding-left: 500px;
+            text-align: center;
+        }
+
+        .container1 {
             max-width: 900px;
+
             margin: auto;
             padding: 20px;
+            text-align: center;
         }
-        h1 {
-            color: #0d47a1;
-        }
+
         .tabs {
             display: flex;
             justify-content: center;
             gap: 10px;
             margin: 20px 0;
         }
+
         .tab {
-            background: #bbdefb;
+            background: #714a6e;
+            color: white;
             padding: 8px 15px;
             border-radius: 5px;
             cursor: pointer;
         }
+
         .tab.active {
-            background: #64b5f6;
-            color: white;
+            background: rgb(96, 12, 99);
+
         }
+
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
             margin-top: 20px;
         }
+
         .card {
-            background: #f0f8ff;
+            background: white;
             padding: 15px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             text-align: left;
+            border: 1px solid black;
         }
+
         .card img {
-            width: 50px;
-        }
-        .card h3 {
-            font-size: 16px;
-            margin: 10px 0;
-        }
-        .card p {
-            font-size: 14px;
-            color: gray;
-        }
-        /* Trust Section */
-        .trust-section {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            text-align: left;
-            background: white;
-            padding: 40px;
-            margin-top: 50px;
-            border-radius: 10px;
-            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        .trust-content h2 {
-            font-size: 28px;
-            color: #0d47a1;
-            margin-bottom: 10px;
-        }
-        .trust-content p {
-            font-size: 16px;
-            color: #555;
-        }
-        .trust-image img {
-            width: 250px;
-        }
-        /* Productivity Section */
-        .productivity-section {
-            text-align: center;
-            margin-top: 60px;
-            padding: 50px;
-            background: white;
-            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-        .productivity-section h2 {
-            font-size: 26px;
-            color: #0d47a1;
-        }
-        .productivity-section p {
-            font-size: 18px;
-            color: #555;
-            margin-top: 10px;
-        }
-        .start-button {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 25px;
-            background: #1565c0;
-            color: white;
-            font-size: 16px;
-            text-decoration: none;
+            width: 100%;
+            height: 120px;
+            object-fit: contain;
             border-radius: 5px;
         }
-        .start-button:hover {
-            background: #0d47a1;
+
+        .video-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 1000px;
+            margin: auto;
+            padding-top: 50px;
         }
-        /* Footer */
+
+        .video-container img {
+            width: 100%;
+
+
+        }
+
+        .play-button {
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-55%, -55%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            width: 90px;
+            height: 50px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+
+        }
+
+        .play-button:hover {
+
+            background-color: rgba(18, 17, 17, 0.9);
+        }
+
+
         .footer {
             margin-top: 50px;
-            background: #0d47a1;
+            background-color: rgb(217, 64, 44);
             color: white;
             padding: 15px;
             text-align: center;
         }
     </style>
 </head>
+
 <body>
 
+
     <div class="navbar">
-        <img src="logo.jpg" alt="Todoist Logo">  <!-- Use your actual logo -->
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo">
+            <span class="brand">todoist</span>
+        </div>
+        <div class="nav-links">
+            <a href="#">Features</a>
+            <a href="#">Resources</a>
+            <span>|</span>
+            <a href="login">Login</a>
+            <a href="login" class="start-button">Start for free</a>
+        </div>
     </div>
 
-    <div class="container">
-        <h1>Kickstart your next project with Todoist Templates</h1>
-        <p>No need to create projects or setups from scratch when we have 50+ templates made for you.</p>
+    <div class="hero" style="display: flex; align-items: center;">
+        <div class="hero-text" style="flex: 1;">
+            <h1>Organize your</h1>
+            <h1>work and life, </h1>
+            <h1>finally!</h1>
+            <p>Simplify life for both you and your team with the</p>
+            <p>world’s #1 task manager and to-do list app.</p>
+            <span>374K+ ★★★★★ reviews from Play Store and Apple Store</span>
+            <p>
+                <a href="login" class="start-button">Get Started</a>
+            </p>
+        </div>
+        <div class="hero-image" style="flex: 1; display: flex; justify-content: center;">
+            <img src="{{ url_for('static', filename='images/image1.AVIF') }}" alt="Hero Image"
+                style="max-width: 1000px; width: 150%; height: auto;"> <!-- Adjusted image styling -->
+        </div>
+    </div>
+    <div>
+        <img src="{{ url_for('static', filename='images/Simple.png') }}" alt="review image" style="max-width:1515px;">
+    </div>
+
+    <div class="container"
+        style="display: flex; align-items: center; justify-content: space-between; max-width: 1000px;">
+        <div style="text-align: left; max-width: 500px;">
+
+            <h3 style="color: rgb(248, 163, 35);" class="brand">Clear your mind</h3>
+            <h1>Capture Tasks at the Speed of Thought</h1>
+            <p style="font-size: 20px;">We’ve spent over a decade refining Todoist to be an extension of your mind.
+                Capture and organize tasks instantly using easy-flowing, natural language.</p>
+        </div>
+    </div>
+    <div class="container"
+        style="display: flex; align-items: center; justify-content: space-between; max-width: 1000px;">
+        <div style="text-align: left; max-width: 500px;">
+            <h3 style="color: rgb(248, 163, 35)" class="brand">Focus on what’s important</h3>
+            <h1>Stay Organized and Focused</h1>
+            <p style="font-size: 20px;">Achieve mental clarity by sorting tasks into Today, Upcoming, or using custom
+                filters. See only what you need, when you need it.</p>
+        </div>
+
+    </div>
+    <div class="container"
+        style="display: flex; align-items: center; justify-content: space-between; max-width: 1000px;">
+        <div style="text-align: left; max-width: 500px;">
+            <h3 style="color: rgb(248, 163, 35);" class="brand">Plan with confidence</h3>
+            <h1>Simplify Your Planning</h1>
+            <p style="font-size: 20px;">Make the most of your time. Schedule due dates, visualize your week in calendar
+                view, and set recurring tasks with ease.</p>
+        </div>
+
+    </div>
+
+    <div class="container"
+        style="display: flex; align-items: center; justify-content: space-between; max-width: 1000px;">
+        <div style="text-align: left; max-width: 500px;">
+            <h3 style="color:rgb(248, 163, 35);" class="brand">Organize your teamwork, too</h3>
+            <h1>A home for your team’s tasks</h1>
+            <p style="font-size: 20px;">Give your team a shared space to collaborate and stay on top of it all alongside
+                but separate from your personal tasks and projects.</p>
+        </div>
+    </div><br>
+    <div class="video-container">
+        <img src="https://res.cloudinary.com/imagist/image/fetch/q_auto,f_auto,c_scale,w_1536/https%3A%2F%2Fwww.todoist.com%2Fstatic%2Fhome%2Fvideo-section%2Fen%2Fposter-image.png"
+            alt="Video Thumbnail">
+        <a href="https://www.youtube.com/watch?v=fI-iTYAwL6c&list=TLGGefzOsH0l2lMwODAyMjAyNQ" target="_blank"
+            class="play-button">
+            ▶ Play
+        </a>
+    </div>
+    <div class="container1">
+        <h1 style="color: rgb(248, 163, 35);" class="brand">Kickstart your next project with Todoist Templates</h1>
+        <p>No need to create projects from scratch when we have 50+ templates for you.</p>
 
         <div class="tabs">
             <div class="tab active" id="tab-personal" onclick="filterTemplates('personal', this)">Personal</div>
             <div class="tab" id="tab-education" onclick="filterTemplates('education', this)">Education</div>
-            <div class="tab" id="tab-support" onclick="filterTemplates('support', this)">Customer Support</div>
+            <div class="tab" id="tab-work" onclick="filterTemplates('work', this)">Work</div>
+            <div class="tab" id="tab-management" onclick="filterTemplates('management', this)">Management</div>
         </div>
-
         <div class="grid" id="templateGrid"></div>
     </div>
-
-    <!-- Trust Section -->
-    <div class="trust-section">
-        <div class="trust-content">
-            <h3>In it for the long haul</h3>
-            <h2>A task manager you can trust for life</h2>
-            <p>We’ve been building Todoist for 18 years and 10 days. Rest assured that we’ll never sell out to the highest bidder.</p>
+    <div class="container1" style="display: flex; max-width: 1000px; gap: 70px;">
+        <div style="text-align: left; max-width: 500px;">
+            <h3 style="color: rgb(212, 19, 19);">In it for the long haul</h3>
+            <h1 style="font-size: 50px;">A task manager you can trust for life</h1>
+            <h3>We’ve been building Todoist for 5 days.<br> Rest assured that we’ll never sell out to the highest
+                bidder.</h3>
         </div>
-        <div class="trust-image">
-            <img src="timetable.jpg" alt="Timetable Image">  <!-- Use your actual image -->
+        <img src="{{ url_for('static', filename='images/task.png') }}" alt="task manager"
+            style="max-width:500px;border-radius: 8px;">
+    </div>
+
+    <div class="container1" style="text-align: center; max-width: 800px; margin: 50px auto;">
+        <h1>Gain calmness and clarity with the world’s most beloved productivity app</h1>
+        
+    </div>
+
+    <div class="container1" style="text-align: center; max-width: 800px; margin: 50px auto;">
+        <h2>Contact Us</h2>
+        <p>Have questions or need support? Reach out to us!</p>
+
+        <p>EMAIL: <a href="mailto:support@todoistclone.com">@gmail.com</a></p>
+        <p>PHONE: 6283739638</p>
+        <p> ADDRESS: Chitkara University, Punjab</p>
+
+        <div style="margin-top: 20px;">
+            <a href="mailto:support@todoistclone.com" class="start-button"
+                style="display: inline-block; padding: 12px 20px;">Email Us</a>
         </div>
     </div>
 
-    <!-- Productivity Section -->
-    <div class="productivity-section">
-        <h2>Gain calmness and clarity with the world’s most beloved productivity app</h2>
-        <p>374000+ ★★★★★ reviews on Google Play and App Store</p>
-        <a href="signup.html" class="start-button">Get Started</a>
-    </div>
-
-    <!-- Footer -->
     <div class="footer">
         © 2025 Todoist Clone. All Rights Reserved.
     </div>
 
-<script>
-    function filterTemplates(category, element) {
-        let grid = document.getElementById('templateGrid');
-        let tabs = document.querySelectorAll('.tab');
-        
-        // Remove 'active' class from all tabs
-        tabs.forEach(tab => tab.classList.remove('active'));
+    <script>
+        function filterTemplates(category, element) {
+            let grid = document.getElementById('templateGrid');
+            let tabs = document.querySelectorAll('.tab');
 
-        // Add 'active' class to the clicked tab
-        element.classList.add('active');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            element.classList.add('active');
+            grid.innerHTML = '';
+            let templates = {
+                'personal': [
+                    { img: "{{ url_for('static', filename='images/fitness.png') }}", title: 'Fitness', desc: 'Stay fit with a daily workout schedule.' },
+                    { img: "{{ url_for('static', filename='images/grocery.png') }}", title: 'Grocery', desc: 'Plan meals and create a shopping list to buy essentials.' },
+                    { img: "{{ url_for('static', filename='images/appoints.png') }}", title: 'Appointments', desc: 'Never forget(or forgot to prepare) another meetings or appointments.' }
+                ],
+                'education': [
+                    { img: "{{ url_for('static', filename='images/examprep.png') }}", title: 'Exam Prep', desc: 'Prepare for your upcoming exams.' },
+                    { img: "{{ url_for('static', filename='images/study.jpg') }}", title: 'Online Course', desc: 'Track progress in your online courses.' },
+                    { img: "{{ url_for('static', filename='images/hwplan.png') }}", title: 'Homework Planner', desc: 'Never miss an assignment deadline.' }
+                ],
+                'work': [
+                    { img: "{{ url_for('static', filename='images/accounting.png') }}", title: 'Accounting Tasks', desc: 'Keep track of financial records and transactions.' },
+                    { img: "{{ url_for('static', filename='images/clmng.png') }}", title: 'Client Management', desc: 'Organize client information, meetings, and follow-ups.' },
+                    { img: "{{ url_for('static', filename='images/btp.png') }}", title: 'Business Travel Packing', desc: 'Ensure you don’t forget essentials for your next work trip.' }
+                ],
+                'management': [
+                    { img: "{{ url_for('static', filename='images/meet.png') }}", title: '1-on-1 Meetings', desc: 'Prepare discussion points for productive individual meetings.' },
+                    { img: "{{ url_for('static', filename='images/employee.png') }}", title: 'Employee Onboarding', desc: 'Create a smooth onboarding process for new hires.' },
+                    { img: "{{ url_for('static', filename='images/goals.png') }}", title: 'Goals & Feedback Meetings', desc: 'Track performance reviews and goal-setting discussions.' }
+                ]
+            };
 
-        // Clear previous content
-        grid.innerHTML = '';
+            templates[category].forEach(item => {
+                let card = document.createElement('div');
+                card.classList.add('card');
+                card.innerHTML = `<img src="${item.img}" alt="icon"><h3>${item.title}</h3><p>${item.desc}</p>`;
+                grid.appendChild(card);
+            });
+        }
 
-        let templates = {
-            'personal': [
-                { img: 'workout.jpg', title: 'Workout Plan', desc: 'Stay fit with a daily workout schedule.' },
-                { img: 'cart.jpg', title: 'Daily & Household Tasks', desc: 'Plan meals and create a shopping list to buy essentials.' },
-                { img: 'selfcare.jpg', title: 'Life & Self-Care', desc: 'Start the day with mindfulness or deep breathing for mental clarity.' }
-            ],
-            'education': [
-                { img: 'exam.jpg', title: 'Exam Prep', desc: 'Prepare for your upcoming exams.' },
-                { img: 'study.jpg', title: 'Online Course', desc: 'Track progress in your online courses.' },
-                { img: 'timetable.jpg', title: 'Homework Planner', desc: 'Never miss an assignment deadline.' }
-            ],
-            'support': [
-                { img: 'mail.jpg', title: 'Send Mail', desc: '<a href="mailto:krrishbudhiraja10@gmail.com">krrishbudhiraja10@gmail.com</a>' },
-                { img: 'address.jpg', title: 'Address Info', desc: 'Chitkara University, Rajpura, Punjab' },
-                { img: 'contact.png', title: 'Contact Info', desc: '<a href="tel:+91-7015130072">+91-7015130072</a>' }
-            ]
-        };
-
-        templates[category].forEach(item => {
-            let card = document.createElement('div');
-            card.classList.add('card');
-            card.innerHTML = `<img src="${item.img}" alt="icon"><h3>${item.title}</h3><p>${item.desc}</p>`;
-            grid.appendChild(card);
+        document.addEventListener('DOMContentLoaded', function () {
+            filterTemplates('personal', document.getElementById('tab-personal'));
         });
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        filterTemplates('personal', document.getElementById('tab-personal'));
-    });
-</script>
-
+    </script>
 </body>
+
 </html>
